@@ -1,4 +1,4 @@
-<?php #script 10.5
+<?php #script 10.4
 	$page_title = 'View the Current Users';
 	include ('includes/header.html');
 	echo '<h1>Registered Users</h1>';
@@ -30,25 +30,7 @@
 		$start = 0;
 	}
 
-	$sort = (isset($_GET['sort'])) ? $_GET['sort']: 'rd';
-
-	switch ($sort) {
-		case 'ln':
-		$order_by = 'last_name ASC';
-		break;
-		case 'fn':
-		$order_by = 'first_name ASC';
-		break;
-		case 'rd':
-		$order_by = 'registration_date ASC';
-		break;
-	default:
-		$order_by = 'registration_date ASC';
-		$sort = 'rd';
-		break;
-	}
-
-	$q = "SELECT last_name, first_name, DATE_FORMAT(registration_date, '%M %d, %Y') AS dr, user_id FROM users ORDER BY $order_by LIMIT $start, $display";
+	$q = "SELECT last_name, first_name, DATE_FORMAT(registration_date, '%M %d, %Y') AS dr, user_id FROM users ORDER BY registration_date ASC LIMIT $start, $display";
 
 	//$q = "SELECT CONCAT(last_name, ', ', first_name) AS name, DATE_FORMAT(registration_date, '%M %d, %Y') AS dr FROM users ORDER BY registration_date ASC";
 	$r = @mysqli_query($dbc, $q);
@@ -58,9 +40,9 @@
 	       <tr>
  			  <td align="left"><b>Edit</b></td>
  			  <td align="left"><b>Delete</b></td>
- 			  <td align="left"><b><a href="view_users.php?sort=ln">Last Name</a></b></td>
- 			  <td align="left"><b><a href="view_users.php?sort=fn">First Name</a></b></td>
- 			  <td align="left"><b><a href="view_users.php?sort=rd">Date Registered</a></b></td>
+ 			  <td align="left"><b>Last Name></b></td>
+ 			  <td align="left"><b>First Name</b></td>
+ 			  <td align="left"><b>Date Registered</b></td>
  			</tr>
  			';
 
@@ -88,20 +70,20 @@
  				$current_page = ($start/$display) + 1;
 
  				if ($current_page != 1) {
- 					echo '<a href="view_users.php?s='. ($start - $display). '&p=' . $pages .'&sort='. $sort.'">Previous</a>
+ 					echo '<a href="view_users.php?s='. ($start - $display). '&p=' . $pages .'">Previous</a>
  					';
  				}
 
  				for ($i = 1; $i <= $pages; $i++) {
  					if ($i != $current_page){
- 						echo '<a href="view_users.php?s=' .(($display*($i -1))).'&p=' .$pages. '&sort='. $sort.'">' . $i .' </a>';
+ 						echo '<a href="view_users.php?s=' .(($display*($i -1))).'&p=' .$pages. '">' . $i .' </a>';
  					} else {
  						echo $i .' ';
  					}
  				}
 
  				if ($current_page != $pages) {
- 					echo '<a href="view_users.php?s='.($start + $display). '&p=' .$pages . '&sort='. $sort .' ">Next</a>';
+ 					echo '<a href="view_users.php?s='.($start + $display). '&p=' .$pages . '">Next</a>';
  				}
  			}
 
