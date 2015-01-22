@@ -9,11 +9,11 @@ function create_window (image, width, height) {
 		window.popup.resizeTo(width, height);
 	}
 
-	var specs ="location=no, scrollbars=no, menubars=no, toolbars=no, resizable=yes, left=0, top=0, width=" + width +",height=" + height;
+	var specs ="location=no, scrollbars=no, menubars=no, toolbars=no, resizable=yes, left=0, top=0, width=" + width + ", height=" + height;
 
 	//set the url:
 
-	var url = "show_image.php?image="+image;
+	var url = "show_image.php?image=" + image;
 
 	popup = window.open(url, "ImageWindow", specs);
 
