@@ -8,8 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	list($check, $data) = check_login($dbc, $_POST['email'], $_POST['pass']);
 
 	if ($check) {
-		setcookie ('user_id', $data['user_id'], time()+3600, '/', '', 0, 0);
-		setcookie ('first_name', $data['first_name'], time()+3600, '/', 0, 0);
+
+		session_start();
+		$_SESSION['user_id'] =$data['user_id'];
+		$_SESSION['first_name'] = $data['first_name'];
+
+		//setcookie ('user_id', $data['user_id'], time()+3600, '/', '', 0, 0);
+		//setcookie ('first_name', $data['first_name'], time()+3600, '/', 0, 0);
 
 		redirect_user('loggedin.php');
 	} else {

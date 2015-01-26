@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+	require ('includes/login_functions.inc.php');
+	redirect_user();
+}
+
 	$page_title = 'Edit a User'; //定义title名称
 	include ('includes/header.html'); //头部页面
 

@@ -1,4 +1,7 @@
 		<?php 
+
+session_start();
+		
 	function create_ad() {
 		echo '<p class="ad">This is an annoyingad! This is annoying ad! This is an aonnoying ad! </p>';
 	}

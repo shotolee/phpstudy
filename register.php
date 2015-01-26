@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+	require ('includes/login_functions.inc.php');
+	redirect_user();
+}
+
 	$page_title = 'Register';
 	include ('includes/header.html');
 
