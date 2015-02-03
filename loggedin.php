@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['agent']) OR ($_SESSION['agent']) != md5($_SERVER['HTTP_USER_AGENT']) ) {
 	require ('includes/login_functions.inc.php');
 	redirect_user();
 }
